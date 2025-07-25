@@ -1,11 +1,5 @@
 # Clustered-POD-RBF
- Offline-online computational decomposition: an efficient  framework for parametric dynamical systems via regional  clustering dimensionality reduction and adaptive radial  basis functions
-<div id="header" align="center">
-  <img src="https://via.placeholder.com/800x300/1f77b4/ffffff?text=参数化动力学系统+POD-RBF+降阶建模框架" width="800" height="300">
-</div>
-
-<div id="description" align="center">
-
+ 
 # 参数化动力学系统离线-在线计算分解框架
 
 ### 基于区域聚类降维和自适应径向基函数的高效建模方法
