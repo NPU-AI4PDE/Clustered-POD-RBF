@@ -1,56 +1,54 @@
 # Clustered-POD-RBF
- 
-# 参数化动力学系统离线-在线计算分解框架
 
-### 基于区域聚类降维和自适应径向基函数的高效建模方法
+## Offline-Online Computational Decomposition Framework for Parametric Dynamical Systems
+
+### An efficient framework via regional clustering dimensionality reduction and adaptive radial basis functions
 
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-Latest-orange.svg)](https://numpy.org/)
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Latest-green.svg)](https://scikit-learn.org/)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
-## :pencil: 项目简介
+## :pencil: Project Description
 
-本项目实现了一个高效的参数化动力学系统计算框架，通过**离线-在线计算分解**策略，结合**区域聚类降维**和**自适应径向基函数(RBF)**技术，显著提升了参数化偏微分方程(PDEs)的求解效率。
+This project implements an efficient computational framework for parametric dynamical systems through **offline-online computational decomposition** strategy, combining **regional clustering dimensionality reduction** and **adaptive radial basis functions (RBF)** techniques to significantly improve the solving efficiency of parametric partial differential equations (PDEs).
 
-该框架特别适用于需要大量参数变化的工程应用，如流体力学中的雷诺数变化问题、结构力学中的材料参数优化等场景。通过智能的参数空间分区和局部降阶建模，实现了高精度与高效率的完美平衡。
+The framework is particularly suitable for engineering applications requiring extensive parameter variations, such as Reynolds number changes in fluid mechanics, material parameter optimization in structural mechanics, and other scenarios. Through intelligent parameter space partitioning and local reduced-order modeling, it achieves the perfect balance between high accuracy and high efficiency.
 
 </div>
 
+## :rocket: Core Features
 
+### 🎯 **Intelligent Parameter Space Partitioning**
+- **K-means Adaptive Clustering**: Automatically identifies optimal partitioning of parameter space
+- **Fixed Segmentation Strategy**: Supports three segmentation modes: equal width, quantile, and increasing density
+- **Smooth Transition Mechanism**: Eliminates numerical discontinuities at partition boundaries
 
-## :rocket: 核心特性
+### ⚡ **Efficient Reduced-Order Modeling**
+- **POD Orthogonal Decomposition**: Automatic energy threshold truncation maintaining optimal dimensions
+- **Adaptive RBF**: Intelligent shape parameter optimization ensuring numerical stability
+- **Memory-Optimized Algorithms**: Large-scale problems automatically switch between SVD/eigenvalue decomposition strategies
 
-### 🎯 **智能参数空间分区**
-- **K-means自适应聚类**: 自动识别参数空间的最优分区
-- **固定分段策略**: 支持等宽、分位数、递增密度三种分段模式
-- **平滑过渡机制**: 消除分区边界处的数值不连续性
+### 🔧 **Engineering Design**
+- **Modular Architecture**: Core algorithms decoupled from applications for easy extension
+- **Robust Design**: Comprehensive exception handling and numerical stability guarantees
+- **Visualization Support**: Built-in heatmaps, error distributions, and various visualization tools
 
-### ⚡ **高效降阶建模**
-- **POD正交分解**: 自动截断能量阈值，保持最优维度
-- **自适应RBF**: 智能优化形状参数，确保数值稳定性
-- **内存优化算法**: 大规模问题自动切换SVD/特征值分解策略
-
-### 🔧 **工程化设计**
-- **模块化架构**: 核心算法与应用解耦，便于扩展
-- **鲁棒性设计**: 完善的异常处理和数值稳定性保证
-- **可视化支持**: 内置热图、误差分布等多种可视化工具
-
-## :computer: 技术栈
+## :computer: Technology Stack
 
 ```python
-# 核心依赖
-import numpy as np           # 数值计算基础
-import scipy as sp           # 科学计算库
-import sklearn               # 机器学习算法
-import matplotlib.pyplot as plt  # 可视化绘图
-import pandas as pd          # 数据处理
-from tqdm import tqdm       # 进度条显示
+# Core Dependencies
+import numpy as np           # Numerical computation foundation
+import scipy as sp           # Scientific computing library
+import sklearn               # Machine learning algorithms
+import matplotlib.pyplot as plt  # Visualization plotting
+import pandas as pd          # Data processing
+from tqdm import tqdm       # Progress bar display
 ```
 
-## :wrench: 安装指南
+## :wrench: Installation Guide
 
-### 环境要求
+### Environment Requirements
 - Python 3.7+
 - NumPy >= 1.19.0
 - SciPy >= 1.5.0
@@ -58,62 +56,62 @@ from tqdm import tqdm       # 进度条显示
 - Matplotlib >= 3.2.0
 - Pandas >= 1.1.0
 
-### 快速安装
+### Quick Installation
 
 <details>
-  <summary>使用 pip 安装依赖</summary>
+  <summary>Install dependencies using pip</summary>
   
 ```bash
-# 克隆项目
-git clone https://github.com/yourusername/pod-rbf-framework.git
-cd pod-rbf-framework
+# Clone the project
+git clone https://github.com/yourusername/clustered-pod-rbf.git
+cd clustered-pod-rbf
 
-# 安装依赖
+# Install dependencies
 pip install -r requirements.txt
 
-# 或者手动安装
+# Or install manually
 pip install numpy scipy scikit-learn matplotlib pandas tqdm
 ```
 </details>
 
 <details>
-  <summary>使用 conda 环境</summary>
+  <summary>Using conda environment</summary>
   
 ```bash
-# 创建虚拟环境
+# Create virtual environment
 conda create -n pod-rbf python=3.8
 conda activate pod-rbf
 
-# 安装依赖
+# Install dependencies
 conda install numpy scipy scikit-learn matplotlib pandas tqdm
 ```
 </details>
 
-## :books: 使用指南
+## :books: Usage Guide
 
-### 快速开始
+### Quick Start
 
 ```python
 from pod_rbf import pod_rbf, clustered_pod_rbf, buildSnapshotMatrix
 
-# 1. 构建快照矩阵
+# 1. Build snapshot matrix
 snapshot_matrix = buildSnapshotMatrix("data/train/pattern.csv", usecols=(0,))
 
-# 2. 准备训练参数 (如雷诺数)
+# 2. Prepare training parameters (e.g., Reynolds numbers)
 Re_values = np.linspace(1, 999, 400)
 
-# 3. 训练标准POD-RBF模型
+# 3. Train standard POD-RBF model
 model = pod_rbf(energy_threshold=0.95)
 model.train(snapshot_matrix, Re_values)
 
-# 4. 推理预测
-prediction = model.inference(500.0)  # 预测Re=500时的解
+# 4. Inference prediction
+prediction = model.inference(500.0)  # Predict solution at Re=500
 ```
 
-### 聚类POD-RBF高级用法
+### Advanced Usage of Clustered POD-RBF
 
 ```python
-# K-means聚类模式
+# K-means clustering mode
 clustered_model = clustered_pod_rbf(
     n_clusters_kmeans=3,
     energy_threshold=0.95,
@@ -121,7 +119,7 @@ clustered_model = clustered_pod_rbf(
 )
 clustered_model.train(snapshot_matrix, Re_values)
 
-# 固定分段模式 - 递增密度分布
+# Fixed segmentation mode - increasing density distribution
 density_model = clustered_pod_rbf(
     fixed_segment_param_idx=0,
     fixed_num_segments=5,
@@ -130,123 +128,120 @@ density_model = clustered_pod_rbf(
 )
 density_model.train(snapshot_matrix, Re_values)
 
-# 批量推理
+# Batch inference
 test_params = np.array([100, 300, 500, 700, 900])
 predictions = clustered_model.inference(test_params)
 ```
 
-### 主要API说明
+### Main API Reference
 
 <details>
-  <summary>POD-RBF 核心类</summary>
+  <summary>POD-RBF Core Classes</summary>
 
-**pod_rbf类**
-- `__init__(energy_threshold=0.99)`: 初始化，设置POD能量保留阈值
-- `train(snapshot, train_params, shape_factor=None)`: 训练模型
-- `inference(inf_params)`: 推理预测
+**pod_rbf Class**
+- `__init__(energy_threshold=0.99)`: Initialize with POD energy retention threshold
+- `train(snapshot, train_params, shape_factor=None)`: Train the model
+- `inference(inf_params)`: Inference prediction
 
-**clustered_pod_rbf类**  
-- `__init__(n_clusters_kmeans=3, ...)`: 初始化聚类参数
-- `train(snapshot, train_params, shape_factor=None)`: 训练局部模型
-- `inference(inf_params)`: 推理预测
-- `print_cluster_summary()`: 打印聚类摘要
-- `save_cluster_info(filename_prefix)`: 保存聚类信息
+**clustered_pod_rbf Class**  
+- `__init__(n_clusters_kmeans=3, ...)`: Initialize clustering parameters
+- `train(snapshot, train_params, shape_factor=None)`: Train local models
+- `inference(inf_params)`: Inference prediction
+- `print_cluster_summary()`: Print clustering summary
+- `save_cluster_info(filename_prefix)`: Save clustering information
 </details>
 
+## :file_folder: Project Structure
 
 ```
-
-## :file_folder: 项目结构
-
-```
-项目根目录/
-├── lid_driven_cavity.py      # 主执行脚本 
-├── pod_rbf/                   # 核心算法模块
-│   ├── __init__.py           # 模块导入
-│   └── pod_rbf.py            # POD-RBF算法实现
-├── data/                      # 数据目录
-│   ├── train/                 # 训练数据集
-│   └── validation/            # 验证数据集
-├── output_heatmap_combined/   # 热图输出目录
-├── output_difference/         # 误差分析输出
-├── requirements.txt           # Python依赖列表
-└── README.md                 # 项目说明文档
+Project Root/
+├── lid_driven_cavity.py      # Main execution script
+├── pod_rbf/                   # Core algorithm module
+│   ├── __init__.py           # Module import
+│   └── pod_rbf.py            # POD-RBF algorithm implementation
+├── data/                      # Data directory
+│   ├── train/                 # Training dataset
+│   └── validation/            # Validation dataset
+├── output_heatmap_combined/   # Heatmap output directory
+├── output_difference/         # Error analysis output
+├── requirements.txt           # Python dependencies list
+└── README.md                 # Project documentation
 ```
 
-## :gear: 算法详解
+## :gear: Algorithm Details
 
-### 离线-在线分解策略
+### Offline-Online Decomposition Strategy
 
-1. **离线阶段 (Offline Phase)**:
-   - 快照数据收集与预处理
-   - POD基函数计算与截断
-   - 参数空间聚类分析
-   - RBF形状参数优化
-   - 局部降阶模型训练
+1. **Offline Phase**:
+   - Snapshot data collection and preprocessing
+   - POD basis function computation and truncation
+   - Parameter space clustering analysis
+   - RBF shape parameter optimization
+   - Local reduced-order model training
 
-2. **在线阶段 (Online Phase)**:
-   - 参数空间定位
-   - 局部模型选择
-   - 快速RBF插值计算
-   - 解空间重构输出
+2. **Online Phase**:
+   - Parameter space localization
+   - Local model selection
+   - Fast RBF interpolation computation
+   - Solution space reconstruction output
 
-### 数学理论基础
+### Mathematical Theory Foundation
 
 $$\mathbf{u}(\boldsymbol{\mu}) \approx \sum_{i=1}^{N_{POD}} a_i(\boldsymbol{\mu}) \boldsymbol{\phi}_i$$
 
-其中：
-- $\mathbf{u}(\boldsymbol{\mu})$: 参数化解向量
-- $\boldsymbol{\phi}_i$: POD基函数
-- $a_i(\boldsymbol{\mu})$: RBF插值系数
+Where:
+- $\mathbf{u}(\boldsymbol{\mu})$: Parametric solution vector
+- $\boldsymbol{\phi}_i$: POD basis functions
+- $a_i(\boldsymbol{\mu})$: RBF interpolation coefficients
 
 $$a_i(\boldsymbol{\mu}) = \sum_{j=1}^{N_{train}} w_{ij} \psi(\|\boldsymbol{\mu} - \boldsymbol{\mu}_j\|)$$
 
-RBF采用逆多二次函数：
+RBF uses inverse multiquadric function:
 $$\psi(r) = \frac{1}{\sqrt{r^2/c^2 + 1}}$$
 
-## :test_tube: 验证与测试
+## :test_tube: Validation and Testing
 
-运行完整的空腔流动算例:
+Run the complete lid-driven cavity example:
 
 ```bash
 python lid_driven_cavity.py
 ```
 
-**输出内容:**
-- 训练过程日志与性能统计
-- 验证误差分析报告
-- 热图可视化结果
-- 聚类信息汇总表
+**Output Content:**
+- Training process logs and performance statistics
+- Validation error analysis reports
+- Heatmap visualization results
+- Clustering information summary tables
 
-**生成文件:**
-- `error_evaluation_std_model.xlsx`: 标准模型误差统计
-- `ns_*_cluster_info.npz`: 聚类模型信息
-- `output_heatmap_combined/*.png`: 解场热图对比
-- `output_difference/*.png`: 误差分布可视化
+**Generated Files:**
+- `error_evaluation_std_model.xlsx`: Standard model error statistics
+- `ns_*_cluster_info.npz`: Clustered model information
+- `output_heatmap_combined/*.png`: Solution field heatmap comparisons
+- `output_difference/*.png`: Error distribution visualizations
 
-## :satellite: 扩展应用
+## :satellite: Extended Applications
 
-### 🔬 **当前支持的物理问题**
-- **流体力学**: 空腔流动、管道流、绕流问题
-- **传热学**: 传导、对流、辐射传热
-- **结构力学**: 弹性变形、振动分析
+### 🔬 **Currently Supported Physical Problems**
+- **Fluid Mechanics**: Cavity flow, pipe flow, flow around objects
+- **Heat Transfer**: Conduction, convection, radiation heat transfer
+- **Structural Mechanics**: Elastic deformation, vibration analysis
 
-### 🎯 **计划新增功能**
-- [ ] 时间相关问题的POD-RBF建模
-- [ ] 多物理场耦合问题支持  
-- [ ] GPU加速计算模块
-- [ ] 自适应网格细化集成
-- [ ] 深度学习混合模型
+### 🎯 **Planned New Features**
+- [ ] POD-RBF modeling for time-dependent problems
+- [ ] Multi-physics coupled problem support  
+- [ ] GPU acceleration computing module
+- [ ] Adaptive mesh refinement integration
+- [ ] Deep learning hybrid models
 
-### 💡 **参数化建模最佳实践**
-- 训练样本数量建议为参数维度的5-10倍
-- POD能量阈值通常设置在0.95-0.999之间
-- 聚类数量选择需要平衡精度与效率
-- 形状参数自动优化一般比手动设置效果更好
+### 💡 **Parametric Modeling Best Practices**
+- Training sample size should be 5-10 times the parameter dimension
+- POD energy threshold typically set between 0.95-0.999
+- Clustering number selection needs to balance accuracy and efficiency
+- Automatic shape parameter optimization generally performs better than manual setting
 
-## :bookmark_tabs: 学术引用
+## :bookmark_tabs: Academic Citation
 
-如果您在研究中使用了本框架，请引用以下论文：
+If you use this framework in your research, please cite the following paper:
 
 ```bibtex
 @article{zhou2025offline,
@@ -259,6 +254,42 @@ python lid_driven_cavity.py
 }
 ```
 
+## :handshake: Contributing
 
+We welcome contributions of all forms! Please check the following guidelines:
 
-*© 2025 参数化动力学系统POD-RBF框架. 保留所有权利.* 
+### 🐛 **Bug Reports**
+- Use detailed titles to describe issues
+- Provide reproduction steps and environment information
+- Include error logs and expected behavior
+
+### ✨ **Feature Requests** 
+- Clearly describe the necessity of new features
+- Provide specific usage scenario examples
+- Consider backward compatibility
+
+### 🔧 **Code Contributions**
+- Fork the project and create feature branches
+- Follow code style and commenting conventions
+- Add corresponding test cases
+- Submit detailed Pull Requests
+
+## :scroll: License
+
+This project is open source under the **MIT License**. For detailed information, please see the [LICENSE](LICENSE) file.
+
+---
+
+<div align="center">
+
+### If this project helps you, please give us a ⭐
+
+**Development Team** | **Technical Support** | **Academic Collaboration**
+:---: | :---: | :---:
+[GitHub Issues](https://github.com/yourusername/clustered-pod-rbf/issues) | [Documentation](https://github.com/yourusername/clustered-pod-rbf/wiki) | 📧 Contact Email
+
+</div>
+
+---
+
+*© 2025 Clustered POD-RBF Framework. All rights reserved.* 
