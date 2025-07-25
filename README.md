@@ -254,41 +254,6 @@ If you use this framework in your research, please cite the following paper:
 }
 ```
 
-## :handshake: Contributing
-
-We welcome contributions of all forms! Please check the following guidelines:
-
-### 🐛 **Bug Reports**
-- Use detailed titles to describe issues
-- Provide reproduction steps and environment information
-- Include error logs and expected behavior
-
-### ✨ **Feature Requests** 
-- Clearly describe the necessity of new features
-- Provide specific usage scenario examples
-- Consider backward compatibility
-
-### 🔧 **Code Contributions**
-- Fork the project and create feature branches
-- Follow code style and commenting conventions
-- Add corresponding test cases
-- Submit detailed Pull Requests
-
-## :scroll: License
-
-This project is open source under the **MIT License**. For detailed information, please see the [LICENSE](LICENSE) file.
-
----
-
-<div align="center">
-
-### If this project helps you, please give us a ⭐
-
-**Development Team** | **Technical Support** | **Academic Collaboration**
-:---: | :---: | :---:
-[GitHub Issues](https://github.com/yourusername/clustered-pod-rbf/issues) | [Documentation](https://github.com/yourusername/clustered-pod-rbf/wiki) | 📧 Contact Email
-
-</div>
 
 ---
 
