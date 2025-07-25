@@ -23,14 +23,7 @@
 
 </div>
 
-## :camera: 系统架构与结果展示
 
-| 功能模块 | 展示图片 |
-|---------|---------|
-| **整体架构流程** | ![Architecture](https://via.placeholder.com/600x400/2ca02c/ffffff?text=离线训练+→+在线推理+流程图) |
-| **参数空间聚类** | ![Clustering](https://via.placeholder.com/600x400/ff7f0e/ffffff?text=K-means+聚类+vs+固定分段) |
-| **降阶建模效果** | ![POD](https://via.placeholder.com/600x400/d62728/ffffff?text=POD+基函数+能量分布) |
-| **误差分析对比** | ![Error](https://via.placeholder.com/600x400/9467bd/ffffff?text=标准POD+vs+聚类POD+误差对比) |
 
 ## :rocket: 核心特性
 
