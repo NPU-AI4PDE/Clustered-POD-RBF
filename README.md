@@ -11,7 +11,7 @@
 
 ## :pencil: Project Description
 
-This project implements an efficient computational framework for parametric dynamical systems through **offline-online computational decomposition** strategy, combining **regional clustering dimensionality reduction** and **adaptive radial basis functions (RBF)** techniques to significantly improve the solving efficiency of parametric partial differential equations (PDEs).
+This project implements an efficient computational framework for parametric dynamical systems through **offline-online computational decomposition** strategy, combining **regional clustering dimensionality reduction** and **adaptive radial basis functions (RBF)** techniques to significantly improve the solving efficiency of parametric partial differential equations (PDEs).(Inspired by this code https://github.com/kylebeggs/POD-RBF)
 
 The framework is particularly suitable for engineering applications requiring extensive parameter variations, such as Reynolds number changes in fluid mechanics, material parameter optimization in structural mechanics, and other scenarios. Through intelligent parameter space partitioning and local reduced-order modeling, it achieves the perfect balance between high accuracy and high efficiency.
 
